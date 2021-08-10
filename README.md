@@ -27,18 +27,25 @@ El cálculo de la validación de CPF es bastante sencillo. Funciona a través de
 Comenzamos usando los primeros 9 dígitos multiplicándolos por la secuencia descendente de 10 a 2 y sumando este resultado.
 
 > 1	4 5	3 8	2 2	0 6
+> 
 > X	X X	X X	X X	X X
+> 
 > 10 9 8 7 6 5 4 3 2
+> 
 > 10 36 40 21 48 10 8 0 12
+> 
 > 10 + 36 + 40 + 21 + 48 + 10 + 8 + 0 + 12 = 185
+> 
 
 Con este resultado en la mano, dividámoslo por **11**, pero lo importante para nosotros no es el resultado, sino el módulo (resto) de la división.
 
 > **185 % 11 = 9**
 
+
 El resto de la división es **9**. Ahora, para calcular el dígito de control, restemos este resto del número **11**:
 
 **11 - 9 = 2**
+
 Dado que el resultado de la resta fue **2**, el primer dígito de control es igual a 2. Si el resultado de esta división es **10 o mayor**, el penúltimo dígito de control será **0**.
 
 ¡Listo! Confirmamos que nuestro **primer dígito de control es válido**.
@@ -47,14 +54,20 @@ Dado que el resultado de la resta fue **2**, el primer dígito de control es igu
 La validación del segundo dígito es similar al primero, pero consideremos el primer dígito de control calculado anteriormente. Por eso la multiplicación se realiza de 11 a 2.
 
 > 1	4	5	3	8	2	2	0	6	2
-X	X	X	X	X	X	X	X	X	X
-11	10	9	8	7	6	5	4	3	2
-11	40	45	24	56	12	10	0	18	4
-11 + 40 + 45 + 24 + 56 + 12 + 10 + 0 + 18 + 4 = 220
+> 
+> X	X	X	X	X	X	X	X	X	X
+>
+>11	10	9	8	7	6	5	4	3	2
+>
+>11	40	45	24	56	12	10	0	18	4
+>
+>11 + 40 + 45 + 24 + 56 + 12 + 10 + 0 + 18 + 4 = 220
+>
 
 Nuevamente hagamos la división entre 11 usando el módulo:
 
 **220 % 11 = 0**
+
 Y hagamos la resta:
 
 **11 - 0 = 11**
