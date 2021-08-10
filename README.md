@@ -18,44 +18,46 @@ Para usar, simplemente agregue la URL: {HOST}.index.php?cpf=NUMERODOCPF
 Ejemplo:
 {HOST}.index.php?cpf=111.111.111-11
 
-==================================================================================================
 # CPF
-Comencemos a trabajar con un CPF, usando el número como ejemplo: 145.382.206-20
+Empecemos a trabajar con un CPF, usando como ejemplo el número: **145.382.206-20 **.
 
-# Validando o primeiro dígito verificador
-O cálculo de validação do CPF é bem direto. Ele funciona através de pesos associados a cada número e uma divisão pelo número primo 11 ao final. Vamos vê-lo em etapas.
+# Validando el primer dígito de control
+El cálculo de la validación de CPF es bastante sencillo. Funciona a través de pesos asociados con cada número y una división por el número primo 11 al final. Veámoslo por pasos.
 
-Começamos utilizando os 9 primeiros dígitos multiplicando-os pela sequência decrescente de 10 à 2 e somamos esse resultado.
+Comenzamos usando los primeros 9 dígitos multiplicándolos por la secuencia descendente de 10 a 2 y sumando este resultado.
 
-1	4	5	3	8	2	2	0	6
-X	X	X	X	X	X	X	X	X
-10	9	8	7	6	5	4	3	2
-10	36	40	21	48	10	8	0	12
-10 + 36 + 40 + 21 + 48 + 10 + 8 + 0 + 12 = 185
-Com esse resultado em mãos, vamos dividí-lo por 11, mas o importante para nós não é resultado, mas sim o módulo (resto) da divisão.
+> 1	4 5	3 8	2 2	0 6
+> X	X X	X X	X X	X X
+> 10 9 8 7 6 5 4 3 2
+> 10 36 40 21 48 10 8 0 12
+> 10 + 36 + 40 + 21 + 48 + 10 + 8 + 0 + 12 = 185
 
-185 % 11 = 9
-O resto da divisão é 9. Agora para calcular o dígito verificador vamos subtrair este resto do número 11:
+Con este resultado en la mano, dividámoslo por **11**, pero lo importante para nosotros no es el resultado, sino el módulo (resto) de la división.
 
-11 - 9 = 2
-Como o resultado da da subtração foi 2, o primeiro dígito verificador é igual a 2. Caso o resultado dessa divisão for 10 ou maior, o penúltimo dígito verificador será o 0.
+> **185 % 11 = 9**
 
-Pronto! Confirmamos que nosso primeiro dígito verificador é válido.
+El resto de la división es **9**. Ahora, para calcular el dígito de control, restemos este resto del número **11**:
 
-# Validando o segundo dígito verificador
-A validação do segundo dígito é semelhante a primeira, porém vamos considerar o primeiro dígito verificador calculado anteriormente. Por isso a multiplicação é feita de 11 à 2.
+**11 - 9 = 2**
+Dado que el resultado de la resta fue **2**, el primer dígito de control es igual a 2. Si el resultado de esta división es **10 o mayor**, el penúltimo dígito de control será **0**.
 
-1	4	5	3	8	2	2	0	6	2
+¡Listo! Confirmamos que nuestro **primer dígito de control es válido**.
+
+# Validación del segundo dígito de control
+La validación del segundo dígito es similar al primero, pero consideremos el primer dígito de control calculado anteriormente. Por eso la multiplicación se realiza de 11 a 2.
+
+> 1	4	5	3	8	2	2	0	6	2
 X	X	X	X	X	X	X	X	X	X
 11	10	9	8	7	6	5	4	3	2
 11	40	45	24	56	12	10	0	18	4
 11 + 40 + 45 + 24 + 56 + 12 + 10 + 0 + 18 + 4 = 220
-Novamente vamos efetuar a divisão por 11 usando o módulo:
 
-220 % 11 = 0
-E vamos fazer a subtração:
+Nuevamente hagamos la división entre 11 usando el módulo:
 
-11 - 0 = 11
-Como o valor é igual ou maior que 10, o último dígito é 0.
+**220 % 11 = 0**
+Y hagamos la resta:
 
-Assim, confirmamos os dois dígitos verificadores do nosso CPF 145.382.206-20 e sabemos que esse CPF é válido. Outra regra muito importante é que CPFs com números iguais como: 111.111.111-11, 222.222.222-22, entre outros, são CPFs válidos pelo algoritmo mas não existem no registro oficial. Assim esse tipo de CPF não pode ser usado.
+**11 - 0 = 11**
+Dado que el valor es **igual o mayor que 10**, el último dígito es **0**.
+
+Por lo tanto, confirmamos los dos dígitos de control de nuestro CPF 145.382.206-20 y sabemos que este CPF es válido. Otra regla muy importante es que los CPF con números iguales como: **111.111.111-1 **, **222.222.222-22**, entre otros, son **CPF válidos** por el algoritmo pero **no existen en registro oficial **. Por tanto, este tipo de CPF no se puede utilizar.
